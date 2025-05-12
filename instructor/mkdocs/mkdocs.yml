@@ -1,0 +1,72 @@
+site_name: "ENTER_HoL_NAME Hands on Lab"
+site_author: GOES
+copyright: Cloudera Inc. 2025
+theme:
+    name: material
+    logo: assets/images/logo-cloudera-white.svg
+    favicon: assets/images/favicon.ico
+    palette:
+    - scheme: default
+      primary: #FFFFFF
+      accent: #121212
+      toggle:
+        name: Switch to light mode
+        icon: material/weather-sunny
+    - scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        name: Switch to dark mode
+        icon: material/weather-night
+    features:
+    - content.code.annotate
+    - content.code.copy
+    # - navigation.expand
+    # - navigation.indexes
+    # - navigation.sections
+    - navigation.footer    
+    - navigation.top
+
+docs_dir: '../../content'
+site_dir: './build'
+# not_in_nav: |
+extra_css:
+  - assets/stylesheets/extra.css
+use_directory_urls: false
+
+nav:
+    - Home: 'README.md'
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true  
+  - pymdownx.tasklist:
+      custom_checkbox: true  
+  - sane_lists: {}
+  - toc:
+      toc_depth: 3
+
+plugins:
+  - same-dir # to allow site_dir to be within docs_dir
+  - search
+  - markdownextradata: {}
+  # - with-pdf:
+  #     custom_template_path: templates
+  #     debug_html: false
+  #     output_path: exercise_guide.pdf
+  - glightbox
