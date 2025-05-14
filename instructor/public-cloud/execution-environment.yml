@@ -1,0 +1,22 @@
+---
+
+version: 3
+
+images:
+  base_image:
+    name: docker-sandbox.infra.cloudera.com/goes/goes-runner-aws:latest
+
+dependencies:
+  galaxy:
+    collections:
+      - name: https://github.infra.cloudera.com/GOES/goes.keycloak
+        type: git
+        version: master
+      - name: https://github.com/cloudera-labs/cloudera.cloud
+        type: git
+        version: devel
+
+additional_build_steps:
+  append_final:
+    - RUN pip install cdpcli-beta --upgrade
+    - RUN pip install git+https://github.com/cloudera-labs/cdpy@devel#egg=cdpy --upgrade

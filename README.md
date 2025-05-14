@@ -1,7 +1,6 @@
-# ENTER_HoL_NAME Hands On Lab
+# Cloudera on cloud Telco Churn Data Lifecycle Hands On Lab
 
-_Brief summary of the Hands on Lab_
-
+Hands on Lab for showcasing the Cloudera on cloud Data Lifecycle using a Telco Churn use case.
 
 > **What's inside?**
 >
@@ -14,7 +13,7 @@ _Brief summary of the Hands on Lab_
 
 | Resource | Description |
 |----------|-------------|
-| **🌐 View the Lab Guide** | **[Live MkDocs Site](https://github.infra.cloudera.com/pages/GOES/<REPOSITORY_NAME>/)**<br/>Browse the rendered lab guide. |
+| **🌐 View the Lab Guide** | **[Live MkDocs Site](https://github.infra.cloudera.com/pages/GOES/hol-004-telco-churn-data-lifecycle/)**<br/>Browse the rendered lab guide. |
 | **📋 Instructor Guide** | **[Instructor README](./instructor/README.md)**<br/>Setup tips, lab objectives, and facilitation notes. |
 | **🗂️ Raw Lab Content** | **[Markdown Sources](./content/)**<br/>The `.md` files used to generate the site—fork, tweak, or extend! |
 

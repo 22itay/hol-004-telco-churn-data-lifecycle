@@ -1,10 +1,68 @@
-# Instructor Guide for ENTER_HoL_NAME
+# Instructor Guide for Cloudera on cloud Data Lifecycle Hands on Lab
 
 This guide provides detailed instructions on setting up the workshop environment, preparing virtual machines with the necessary prerequisites, and publishing the workshop guide for participants.
 
-## Hands on Lab Environment Setup
+## Hands on Lab Cloudera on Cloud Environment Setup
 
-_Any details on how to setup HoL environment_
+The `public-cloud/aws` folder contains Ansible playbooks and Terraform configuration files to setup the Cloudera on Cloud environment, data services. The setup playbooks also create assets required for the Hands on Lab.
+
+> [!IMPORTANT]  
+> The commands below are run from the `public-cloud/aws` directory this repository.
+
+* Ensure Python virtual environment with `ansible-navigator` is activated.
+
+* Set the required environment variables.
+
+```bash
+export AWS_ACCESS_KEY_ID=your-aws-access-key-id
+export AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
+export AWS_SESSION_TOKEN=your-aws-session-token # (optional if using AWS SSO)
+export SSH_PRIVATE_KEY_FILE=path-to-ssh-private-key-file
+export CDP_ACCESS_KEY_ID=your-cdp-access-key-id
+export CDP_PRIVATE_KEY=your-cdp-private-key
+```
+
+* Update the `config.yml` parameters as required.
+  * Notably, you should add and/or change the below parameters. The Data Services configurations (e.g. GPU for CML) can be edited in the config.yml file.
+
+```yaml
+prefix: "churl-hol" # Short prefix to append to all resources created
+infra_region:   us-east-2 # CSP region for infra
+
+# Change data services to enable as required
+enable_cdf: yes
+enable_cml: yes
+enable_cdw: yes
+enable_cde: yes
+```
+
+* To setup the environment and datalake run the command below.
+
+```bash
+ansible-navigator run setup-cdp-env.yml -e @./config.yml
+```
+
+* To enable the required data hub and data services run the command below.
+
+```bash
+ansible-navigator run setup-cdp-services.yml -e @./config.yml
+```
+
+### Teardown
+
+The cleanup is split into two separate playbooks - one to remove all Data Services and the second to remove the Cloudera Environment and infrastructure.
+
+Tear down data services by running the following command:
+
+```bash
+ansible-navigator run teardown-cdp-services.yml -e @./config.yml
+```
+
+Tear down the CDP environment and infrastructure by running the command below:
+
+```bash
+ansible-navigator run teardown-cdp-env.yml -e @./config.yml
+```
 
 ## Publishing the Workshop Guide to GitHub Pages
 

@@ -1,0 +1,52 @@
+---
+
+ansible-navigator:
+  playbook-artifact:
+    save-as: "runs/{playbook_name}-{time_stamp}.json"
+
+  ansible-runner:
+    artifact-dir: runs
+    rotate-artifacts-count: 3
+
+  logging:
+    level: debug
+    append: False
+
+  ansible:
+    inventory:
+      entries:
+        - inventory.yml
+
+  execution-environment:
+    enabled: True
+    environment-variables:
+      pass:
+        - CDP_ACCESS_KEY_ID
+        - CDP_PRIVATE_KEY
+        - AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY
+        - AWS_SESSION_TOKEN
+        - SSH_PUBLIC_KEY_FILE
+        - SSH_PRIVATE_KEY_FILE
+        - HOL_PREFIX
+        - HOL_CDP_ENV
+        - HOL_SRC_DATABASE
+        - HOL_ML_WORKBENCH
+        - CDP_CLOUDERA_AI_KEY      
+      set:
+        ANSIBLE_CALLBACK_WHITELIST: "ansible.posix.profile_tasks"
+        ANSIBLE_GATHERING: "smart"
+        ANSIBLE_DEPRECATION_WARNINGS: False
+        ANSIBLE_HOST_KEY_CHECKING: False
+        ANSIBLE_SSH_RETRIES: 10
+        ANSIBLE_SSH_CONTROL_PATH: "/dev/shm/cp%%h-%%p-%%r"
+    image: docker-sandbox.infra.cloudera.com/goes/hol-churn-env:latest
+    pull:
+      policy: missing
+    container-options:
+      - "--network=host"
+    volume-mounts:
+      - src: "${SSH_PUBLIC_KEY_FILE}"
+        dest: "${SSH_PUBLIC_KEY_FILE}"
+      - src: "${SSH_PRIVATE_KEY_FILE}"
+        dest: "${SSH_PRIVATE_KEY_FILE}"
