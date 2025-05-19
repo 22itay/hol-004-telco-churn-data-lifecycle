@@ -7,13 +7,6 @@
   tags:
     - env
   tasks:
-    - name: Print stuff
-      debug:
-        msg:
-          - Attendee count: "{{ num_attendees }}"
-          - Num Impala VWs: "{{ dw.impala_vw.num_vws }}"
-          - VW name: "{{ dw.impala_vw.vw_name_prefix +'-%03x' | format(item + 1) }}"
-      loop: "{{ range(0, dw.impala_vw.num_vws | int) }}"          
 
 ############# Environment Discovery & Validation #############
         
@@ -415,15 +408,6 @@
             wait: True
             delay: 30
             timeout: 1200
-          # debug:
-          #   msg:
-          #     - name: "{{ __cde_item.vc.name }}"
-          #   # cluster_id: "{{ __cdw_de.services | map(attribute='id') | first }}"
-          #     - cluster_id: "{{ ( __cde_ds.services | selectattr('name', 'contains', __cde_item.name)|first).clusterId }}"
-          #     - env: "{{ cdp_environment_name }}"
-          #     - spark_version: "{{ __cde_item.vc.spark_version | default(omit) }}"
-          #     - cpu_requests: "{{ __cde_item.vc.cpu_requests | default(omit) }}"
-          #     - memory_requests: "{{ __cde_item.vc.memory_requests | default(omit) }}"
           loop_control:
             loop_var: __cde_item
             label: "{{ __cde_item.name }}"

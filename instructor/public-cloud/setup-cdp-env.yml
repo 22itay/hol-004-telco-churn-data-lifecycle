@@ -78,6 +78,12 @@
                 loop_var: __cdp_hol_instructor_group_resource_role_item
               loop: "{{ cdp_instructor_group.resource_roles }}"
 
+            # We'll add the executing user to the instructor group
+            - name: Gather current user details
+              cloudera.cloud.iam_user_info:
+                current_user: yes
+              register: __current_user
+
             - name: Ensure the CDP Instructor group is created with correct permissions
               cloudera.cloud.iam_group:
                 name: "{{ cdp_instructor_group.name }}"
@@ -85,6 +91,7 @@
                 sync: "{{ cdp_instructor_group.sync_on_login }}"
                 roles: "{{ __cdp_hol_instructor_group_role_crns }}"
                 resource_roles: "{{ __cdp_hol_instructor_group_resource_role_assignments }}"
+                users: "{{ __current_user.users | map(attribute='crn') }}"
 
         # Attendee Group
         - name: Ensure Attendee Group has correct permissions
