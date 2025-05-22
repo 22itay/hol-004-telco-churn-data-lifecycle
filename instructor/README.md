@@ -48,9 +48,21 @@ ansible-navigator run setup-cdp-env.yml -e @./config.yml
 ansible-navigator run setup-cdp-services.yml -e @./config.yml
 ```
 
+* To update the data and configure the assets required for the hands on lab run the command below.
+
+```bash
+ansible-navigator run setup-hol-assets.yml -e @./config.yml
+```
+
 ### Teardown
 
-The cleanup is split into two separate playbooks - one to remove all Data Services and the second to remove the Cloudera Environment and infrastructure.
+The cleanup is split into three separate playbooks - one to cleanup tghe hands on lab assets; one to remove all Data Services and the third to remove the Cloudera Environment and infrastructure.
+
+Tear down hands on lab assets by running the following command:
+
+```bash
+ansible-navigator run teardown-hol-assets.yml -e @./config.yml
+```
 
 Tear down data services by running the following command:
 

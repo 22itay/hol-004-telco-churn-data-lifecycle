@@ -375,7 +375,6 @@
           cloudera.cloud.dw_data_visualization:
             name: "{{ dw.viz.viz_name_prefix +'-%03x' | format(item + 1) }}"
             cluster_id: "{{ __cdw_ds.clusters | map(attribute='id') | first }}" 
-            # TODO: Add groups to data viz
             config:
               adminGroups: ["{{ cdp_instructor_group.name}}"]
               userGroups: ["{{ cdp_attendee_group.name}}"]
