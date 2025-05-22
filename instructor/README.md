@@ -22,18 +22,27 @@ export CDP_ACCESS_KEY_ID=your-cdp-access-key-id
 export CDP_PRIVATE_KEY=your-cdp-private-key
 ```
 
-* Update the `config.yml` parameters as required.
-  * Notably, you should add and/or change the below parameters. The Data Services configurations (e.g. GPU for CML) can be edited in the config.yml file.
+* Copy `config-template.yml` to `config.yml` and update the parameters as required.
+
+   ```bash
+   cp config-template.yml config.yml
+   ```
+
+* Notably, you should add and/or change the below parameters. The Data Services configurations (e.g. GPU for CML) can be edited in the config.yml file.
 
 ```yaml
-prefix: "churl-hol" # Short prefix to append to all resources created
+prefix: "<ENTER_VALUE>" # Short prefix to append to all resources created
 infra_region:   us-east-2 # CSP region for infra
 
-# Change data services to enable as required
-enable_cdf: yes
-enable_cml: yes
-enable_cdw: yes
-enable_cde: yes
+owner_email: "<ENTER_VALUE>"           # email address of owner
+
+# Your CDP workload credentials
+cdp_workload_username: "<ENTER_VALUE>"         # str;
+cdp_workload_password: "<ENTER_VALUE>"         # str; 
+
+# Number of Hands on Lab Attendees
+# Used to determine the scaling in the Data Service configuation
+num_attendees: <ENTER_VALUE>
 ```
 
 * To setup the environment and datalake run the command below.
