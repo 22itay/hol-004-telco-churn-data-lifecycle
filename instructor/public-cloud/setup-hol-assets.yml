@@ -247,23 +247,16 @@
               vars:
                 CDP_STORAGE_BUCKET: "{{ __dl.datalakes[0].cloudStorageBaseLocation }}"
         
-        - name: Ensure files are uploaded to CDE VC resources
+        - name: Ensure files are uploaded to CDE VC resources (curl)
           when:
            - "{{ item not in __cde_folder_check.json.resources | community.general.json_query('[?name==`Telco_Churn`].files[].path') }}"
-          ansible.builtin.uri:
-            url: "{{ __cde_vc_info.vcs[0].vcApiUrl }}/resources/Telco_Churn/{{ item }}"
-            method: PUT
-            headers:
-              Authorization: "Bearer {{ __cde_access_token }}"
-              Accept: "*/*"
-              Content-Type: "multipart/form-data"
-            body_format: form-multipart
-            body:
-              file:
-                filename: "files/cde/{{ item }}"
-            status_code: 
-              - 200
-              - 201
+          ansible.builtin.command: >
+            curl -X PUT \
+            -H "Authorization: Bearer {{ __cde_access_token }}" \
+            -H "Accept: */*" \
+            -H "Content-Type: multipart/form-data" \
+            -F "file=@files/cde/{{ item }}" \
+            "{{ __cde_vc_info.vcs[0].vcApiUrl }}/resources/Telco_Churn/{{ item }}"
           loop:
             - parameters.conf
             - CDE-updateTable.py

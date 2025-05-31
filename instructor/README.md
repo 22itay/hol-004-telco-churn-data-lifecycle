@@ -4,10 +4,11 @@ This guide provides detailed instructions on setting up the workshop environment
 
 ## Hands on Lab Cloudera on Cloud Environment Setup
 
-The `public-cloud/aws` folder contains Ansible playbooks and Terraform configuration files to setup the Cloudera on Cloud environment, data services. The setup playbooks also create assets required for the Hands on Lab.
+The `public-cloud/` folder contains Ansible playbooks and Terraform configuration files to setup the Cloudera on Cloud environment, data services. The setup playbooks also create assets required for the Hands on Lab.
 
 > [!IMPORTANT]  
-> The commands below are run from the `public-cloud/aws` directory this repository.
+> The commands below are run from the `public-cloud/` directory this repository.
+
 
 * Ensure Python virtual environment with `ansible-navigator` is activated.
 
@@ -84,6 +85,13 @@ Tear down the CDP environment and infrastructure by running the command below:
 ```bash
 ansible-navigator run teardown-cdp-env.yml -e @./config.yml
 ```
+
+### Known Issues / Manual Steps
+
+| Issue | Description | Workaround |
+|-------|-------------|------------|
+| Automation of DataViz remote data setting is not currently possible. | A way to easily automate setting adding the Cloudera AI model URL in each Cloudera DataViz cluster is not yet available | Manually configure the Remote Data Setting from each DataViz cluster to reach Cloudera AI model url/workbench |
+| DataViz cluster teardown failed during `teardown-cdp-services.yml` playbook | The API lookup of existing DataViz clusters periodically fails. This sometimes causes the `Remove the CDW DataViz Clusters` task to fail with error _unable to get viz-webapp (cause: sql: no rows in result set)_  | Rerun the `teardown-cdp-services.yml`. |
 
 ## Publishing the Workshop Guide to GitHub Pages
 
