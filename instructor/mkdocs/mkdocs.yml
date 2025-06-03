@@ -78,3 +78,15 @@ plugins:
   #     debug_html: false
   #     output_path: exercise_guide.pdf
   - glightbox
+  - macros
+#   - macros:
+#       include_yaml:
+#         - template_data/data.yml
+
+# Define values for macros here
+extra:
+    cdp_environment_name: churn-hol-cdp-env
+    kafka_to_lakehouse_flow_name: churn-hol-kafka-to-lakehouse
+    kafka_brokers: churn-hol-smm-dh-corebroker2.churn-ho.a465-9q4k.cloudera.site:9093, churn-hol-smm-dh-corebroker1.churn-ho.a465-9q4k.cloudera.site:9093, churn-hol-smm-dh-corebroker0.churn-ho.a465-9q4k.cloudera.site:9093
+    kafka_topic: telco_data
+    cai_workbench_name: churn-hol-default-ml
