@@ -90,3 +90,4 @@ extra:
     kafka_brokers: churn-hol-smm-dh-corebroker2.churn-ho.a465-9q4k.cloudera.site:9093, churn-hol-smm-dh-corebroker1.churn-ho.a465-9q4k.cloudera.site:9093, churn-hol-smm-dh-corebroker0.churn-ho.a465-9q4k.cloudera.site:9093
     kafka_topic: telco_data
     cai_workbench_name: churn-hol-default-ml
+    cde_virtual_cluster_name: churn-hol-vc

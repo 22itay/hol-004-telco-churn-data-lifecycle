@@ -38,34 +38,34 @@ Click on **Jobs** from the left menu to create an Airflow job.
     * **CDE-updateTable** - generate random changes in rich table to visualize Lakehouse Time Travel functionality.
     * **CDE-telco_data_enrichment** - process in Spark (Python) to enrich the data ingested from Kafka and save to a new table.
 
-In the Job window, click on **Create Job**
+In the Job window, ensure that the `{{ cde_virtual_cluster_name }}` Virtual Cluster is selected at the top of the windown. Then click on **Create Job**.s
 
 ![Cloudera Data Engineering Create Job](cde_create_job.png)
 
 In the Job creation form, enter the following information:
 
 - **Job Type**: Airflow
-- **Name**: Use the naming convention `<User ID>-pipeline` Replace `<User ID>` with your assigned user,for example, `user050`.
+- **Name**: Use the naming convention `<username>-pipeline`.
 - **DAG**: Editor, to graphically configure the task.
 
 Click **Create** once these values are correctly entered.
 
 ![Cloudera Data Engineering Save Job](cde_save_job.png)
 
-On the Job editing screen, select the Editor tab, and you will see the canvas shown in the image below. This can be used to construct the steps of the pipeline. In our case, we are going to create two Cloudera Data Engineering Jobs and relate them.
+On the Job editing screen, select the **Editor** tab, and you will see the canvas shown in the image below. This can be used to construct the steps of the pipeline. In our case, we are going to create two Cloudera Data Engineering Jobs and relate them.
 
 ![Cloudera Data Job Editor Canvas](cde_job_canvas.png)
 
 ### Configure Data Enrichment job
 
-Let's start with the first Job - Data Enrichment. 
+Let's start with the first Job - Data Enrichment.
 
-Click on the Cloudera Data Engineering Job button and drag onto the canvas, entering the following settings:
+Click on the CDE Job button and drag onto the canvas, entering the following settings:
 
-- **Title/Name**: Data Enrichment
-- **Select Job**: Select CDE-telco_data_enrichment
+- **Title/Name**: `Data Enrichment`
+- **Select Job**: Select `CDE-telco_data_enrichment`
 - Check the checkbox **Override Spark values**. Additional options will appear below.
-- **Arguments**: Enter you `<User ID>`, name of the user assigned to you. For example, `user050`.
+- **Arguments**: Enter your assigned User ID (e.g. `user050`).
 
 ![Add Data Enrichment Job](cde_add_enrichment_job.png)
 
@@ -76,10 +76,10 @@ Configure the second Job - Table Update.
 Click on the CDE Job button and drag onto the canvas, entering
 the following settings:
 
-- **Title/Name**: Table Update
-- **Select Job**: Select CDE-updateTable
+- **Title/Name**: `Table Update`
+- **Select Job**: Select `CDE-updateTable`
 - Check the checkbox **Override Spark values**. Additional options will appear below.
-- **Arguments**: Enter you `<User ID>`, name of the user assigned to you. For example, `user050`.
+- **Arguments**: Enter your assigned User ID (e.g. `user050`).
 
 ![Add Table Update Job](cde_add_table_update_job.png)
 
@@ -110,20 +110,17 @@ You should see the pipeline execution screen, indicating that the execution has 
 
 ![Run Job Initialized](cde_run_job_initialized.png)
 
-Click on the Airflow UI tab to see the execution detail of each step in the pipeline.
+Click on the **Airflow UI** tab to see the execution detail of each step in the pipeline.
 
-The configured Data Enrichment and Table Update jobs are listed at the bottom left. The colors indicating the status of each job. Make sure the radio button **Auto-refresh** is enabled to
-automatically display the status of jobs.
+The configured Data Enrichment and Table Update jobs are listed at the bottom left. The colors indicating the status of each job. Make sure the radio button **Auto-refresh** is enabled to automatically display the status of jobs.
 
 ![Inspect Running Job](cde_run_job_inspect.png)
 
-You can see more information about the execution by clicking on the view **Graph**. Hovering the mouse over the Job name displays specific information for each step in the pipeline. Make
-sure the pipeline status is Success, which indicates that the entire pipeline was able to run without issue.
+You can see more information about the execution by clicking on the **Graph** view. Hovering the mouse over the Job name displays specific information for each step in the pipeline.
 
 ![Inspect Running Job](cde_run_job_information.png)
 
-!!! info
-    The execution status appears next to the name of the  pipeline (marked in red). If it is green and indicates _Success_, it means that the execution was successful.
+Once both jobs go to status success, make sure the overall pipeline status is success by clicking on the **Details** view. If _Total success_ is the execution was successful.
 
 ![Successful Job Execution](cde_run_job_success.png)
 
