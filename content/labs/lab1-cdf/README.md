@@ -20,11 +20,11 @@ Ensure the following requirements are met in order to run this exercise:
 
 ### Open Cloudera Data Flow
 
-From the Cloudera on cloud Tenant home page, click on DataFlow.
+From the Cloudera on cloud Tenant home page, click on Data Flow.
 
 ![Cloudera on Cloud Tenant Home](cloudera_on_cloud_tenant_home.png)
 
-Once in DataFlow, click on the option **Catalog** from the left menu. The data ingestion application templates are listed here. For the purpose of this workshop, we have created and published a template that allows you to read Kafka topic data and ingest/store it in the Lakehouse provided by CDP Public Cloud.
+Once in Data Flow, click on **Catalog** from the left menu. The data ingestion application templates are listed here. For the purpose of this workshop, we have created and published a template that allows you to read Kafka topic data and ingest/store it in the Lakehouse provided by Cloudera on cloud.
 
 Click on the Flow called `{{ kafka_to_lakehouse_flow_name | default("cdp_hol_kafka_to_lakehouse") }}` to start deploying it.
 
@@ -32,46 +32,45 @@ Click on the Flow called `{{ kafka_to_lakehouse_flow_name | default("cdp_hol_kaf
 
 ### Configure and Deploy Flow
 
-When clicked, the panel shown in the image below appears with the Flow information. It shows the available versions, creation date, creator user, and a button **Deploy** to start the deployment. Click on that **Deploy** button.
+When the flow is clicked, the panel shown in the image below appears with the Flow information. It shows the available versions, creation date, creator user, and a button **Deploy** to start the deployment. Click on that **Deploy** button.
 
 ![Cloudera DataFlow Deploy Flow](cdf_deploy_flow.png)
 
-The popup window that appears allows you to select the DataFlow cluster in which you want to deploy the Flow. In this case, the cluster to be selected is **`{{ cdp_environment_name | default("cloudera-cdp-hol-cdp-env") }}`**. Once selected, click **Continue**.
+The popup window that appears allows you to select the target Data Flow workspace in which you want to deploy the Flow. In this case, the workspace to be selected is **`{{ cdp_environment_name | default("cloudera-cdp-hol-cdp-env") }}`**. Once selected, click **Continue**.
 
 !!! info
     The workshop instructor will tell you which environment to select.
 
 ![Cloudera DataFlow Deploy Flow Step 1](cdf_deploy_flow_step1.png)
 
-From this point, you will need to enter the Flow configuration. 
+From this point, you will need to enter the Flow configuration.
 
-Start by assigning a **Deployment Name**, **Target Project**, and click **Next**.
+Start by assigning a **Deployment Name**, **Target Project** as outlined below, and click **Next**.
 
-- For the purposes of this workshop, please name the Flow starting with your assigned username. For example, `user000`
+- For **Deployment Name**, please prefix the with your username. For example, `<username>-kafka-to-lakehouse`
 - Select `workshop` or `Unassigned` for the **Target Project**. This is a way to organize your flows.
 
 ![Cloudera DataFlow Deploy Flow Step 2](cdf_deploy_flow_step2.png)
 
-Make sure the option **Automatically start flow upon successful deployment** is checked
-and click **Next**.
+Make sure the option **Automatically start flow upon successful deployment** is checked and click **Next**.
 
 ![Cloudera DataFlow Deploy Flow Step 3](cdf_deploy_flow_step3.png)
 
 In this part of Parameters, you must enter the following values:
 
-- **CDP Workload User Password**: Enter the Workload Password shared at the beginning of the workshop.
-- **CDP Workload Username**: Enter the assigned User ID (example. `user001`)
-- **Database**: Enter User ID
+- **CDP Workload User Password**: Enter your Workload Password. See the [Cloudera on Cloud Account Guide](../../guides/cdp-account/README.md#setting-your-cdp-workload-password) for details on how to set your Cloudra on Cloud workload password.
+- **CDP Workload Username**: Enter your Workload Username.
+- **Database**: Enter your assigned User ID (e.g. `user050`).
 - **Kafka Brokers**: `{{ kafka_brokers }}`
 - **Kafka Consumer Group Id**: Enter `<user id>-group` (eg. `user050-group`)
 - **Kafka Topic**: `{{ kafka_topic }}`
 
-For the purposes of this workshop, the remaining values were filled out for you and don’t need to change.
+For the purposes of this workshop, the remaining values were filled out for you and don't need to change.
 
 Review that the parameters were entered correctly. Then click **Next**.
 
 !!! NOTE
-    For the purposes of the workshop, your user (e.g. `user050`) is also the name of the database where you will store the data (which has already been created for you), and the name of the Kafka Consumer Group ID for reading messages.
+    For the purposes of the workshop, your User ID (e.g. `user050`) is the name of the database where you will store the data (which has already been created for you), and the name of the Kafka Consumer Group ID for reading messages.
 
 ![Cloudera DataFlow Deploy Flow Step 4](cdf_deploy_flow_step4.png)
 
@@ -93,7 +92,7 @@ The blue box indicates that the Flow deployment process has been started. By cli
 
 ![Cloudera DataFlow Track Deployment](cdf_track_deployment.png)
 
-Once the deployment is finished, click on **Manage Deployment** to see the details of the recently deployed Flow.
+Once the deployment is finished, click on **Actions** -> **Manage Deployment** to see the details of the recently deployed Flow.
 
 ![Cloudera DataFlow Manage Deployment](cdf_manage_deployment.png)
 
@@ -120,23 +119,38 @@ As you can see, the Processors are not started, they are paused.
 
 ![NiFi Process Group](cdf_nifi_process_group.png)
 
-From the _Out_ field in every processor, you can see that data has flowed through in the past 5 minutes. You have already consumed data from Kafka and to Iceberg!
+### Enable and Start the Flow
+
+We will now enable and start the NiFi flow to ingest data from Kafka and write to Iceberg.
+
+Right Click on a blank area of on the NiFi canvas (i.e. not on any of the Processors) and click **Enable**. At this point the Processors state will show as stopped (:material-stop:).
+
+![NiFi Enable Flow](cdf_nifi_enable_flow.png)
+
+Start the Processors, by right clicking of a blank area of the NiFi canvas and click **Start**.
+
+![NiFi Start Flow](cdf_nifi_start_flow.png)
+
+The Processors will now show as running (:material-play:). After a few moments, from the _Out_ field in every processor, you can see that data has flowed through in the past 5 minutes. You have consumed data from Kafka and written to Iceberg!
+
+!!! tip
+    You can refresh the counter by pressing the Ctrl+R (Windows) or Command+R (Mac) combination on the keyboard.
+
+![NiFi Successful Flow](cdf_nifi_successful_flow.png)
 
 ### Inspect and Modify the Flow
 
 Flow Management allows us to see and access data in motion during the execution of the data flow.
 
-Between Processors **ConsumeKafkaRecord** and **MergeRecords**, there is a connection. This connection is what joins the Processors and transmits data from one to the
-other, and you can check how much data is queued at every step of the process.
+Between Processors **ConsumeKafkaRecord_2_6** and **MergeContent**, there is a connection. This connection is what joins the Processors and transmits data from one to the other, and you can check how much data is queued at every step of the process.
 
-Let's see this in action by building up the queue. In this case, existing kafka data already consumed and we want to explore other features of the NiFi processor. We are configuring
-ConsumeKafkaProcessor to pull the data with different kafka consumer groups.
+Let's see this in action by building up the queue. We have already consumed Kafka data so let's modify the  ConsumeKafkaProcessor to pull the data with different kafka consumer groups.
 
-First, right-click on **MergeRecords** processor and click **Stop**. Repeat the same for processor **ConsumeKafkaRecord**
+First, right-click on **MergeContent** processor and click **Stop**. Repeat the same for processor **ConsumeKafkaRecord_2_6**
 
 ![NiFi Stop Processor](cdf_nifi_stop_processor.png)
 
-Right click on **ConsumerKafkaRecord** processor and click on **Configure**
+Right click on **ConsumeKafkaRecord_2_6** processor and click on **Configure**
 
 ![NiFi Configure Processor](cdf_nifi_configure_processor.png)
 
@@ -146,7 +160,7 @@ Change the consumer group id by clicking on **Group ID** value and chaning the c
 
 ![NiFi Change Group ID property](cdf_nifi_change_group_id_config.png)
 
-Start the ConsumerKafkaRecord processor by right clicking and **Start**.
+Start the **ConsumeKafkaRecord_2_6** processor by right clicking and **Start**.
 
 ![NiFi Start Processor](cdf_nifi_start_processor.png)
 
@@ -157,10 +171,9 @@ You will see data start to queue up in the connector shortly after starting.
 !!! tip
     You can refresh the counter by pressing the Ctrl+R (Windows) or Command+R (Mac) combination on the keyboard.
 
-At some point there should be a number next to the legend _Queued_ in the connection between **ConsumeKafkaRecord** and **MergeRecords**.
+At some point there should be a number next to the legend _Queued_ in the connection between **ConsumeKafkaRecord_2_6** and **MergeContent**.
 
-To see the queued data, right-click on the
-connection and click on the option **List Queue**, opening a popup window.
+To see the queued data, right-click on the connection and click on the option **List Queue**, opening a popup window.
 
 ![NiFi List Queue](cdf_nifi_list_queue.png)
 
@@ -181,9 +194,9 @@ Now you can display the data correctly. Notice that the fields or attributes ind
 
 ![NiFi View Flow File Formatted Content](cdf_nifi_view_flowfile_content_formatted.png)
 
-Start the stopped **MergeRecords** processor again to resume the flow. Remember that you can refresh the flow counters with the combination `Control+R` or `Command+R`.
+Start the stopped **MergeContent** processor again to resume the flow. Remember that you can refresh the flow counters with the combination `Control+R` or `Command+R`.
 
-![Start Merge Records Processor](cdf_nifi_start_mergerecords_processor.png)
+![Start Merge Content Processor](cdf_nifi_start_mergerecords_processor.png)
 
 If the previous steps were executed correctly, the connection of the Processor **PutIceberg** to a funnel should be of type success.
 
