@@ -9,7 +9,6 @@ The `public-cloud/` folder contains Ansible playbooks and Terraform configuratio
 > [!IMPORTANT]  
 > The commands below are run from the `public-cloud/` directory this repository.
 
-
 * Ensure Python virtual environment with `ansible-navigator` is activated.
 
 * Set the required environment variables.
@@ -62,6 +61,23 @@ ansible-navigator run setup-cdp-services.yml -e @./config.yml
 
 ```bash
 ansible-navigator run setup-hol-assets.yml -e @./config.yml
+```
+
+### Assigning Lab Atteendees to Cloudera on Cloud Group
+
+By default a `{{ prefix }}-attendee` Cloudera on Cloud group is created as part of the environment setup. This group has the roles and resource roles to complete each of the lab exercises.
+
+Before the lab, you will need to assign the attendee users to this group. Then run **Synchronize Users** for the Hands on Lab Cloudera on cloud environment.
+
+Alternatively, if users are logging in via Keycloak, we should update the configuration file, `config.yml`, with the Keycloak group name so that users are automatically added when they login via their Keycloak account. A sample of the required changes to the configuration file is shown below.
+
+```yaml
+cdp_attendee_group:
+  name: "<KEYCLOAK_GROUP_NAME>" # NOTE: This can be a pre-existing group aligning with the Keycloak realm
+  create_group: no
+  add_to_idbroker: yes
+  sync_on_login: no
+...
 ```
 
 ### Teardown

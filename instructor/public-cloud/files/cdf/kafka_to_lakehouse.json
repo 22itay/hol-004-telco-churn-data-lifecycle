@@ -1397,7 +1397,7 @@
                     "description": "",
                     "sensitive": false,
                     "provided": false,
-                    "value": "user_id"
+                    "value": "ENTER CDP_WORKLOAD_USERNAME"
                 },
                 {
                     "name": "Kafka Topic",
@@ -1411,21 +1411,21 @@
                     "description": "",
                     "sensitive": false,
                     "provided": false,
-                    "value": "kafka-cluster-corebroker2.ps-sandb.a465-9q4k.cloudera.site:9093, kafka-cluster-corebroker1.ps-sandb.a465-9q4k.cloudera.site:9093, kafka-cluster-corebroker0.ps-sandb.a465-9q4k.cloudera.site:9093"
+                    "value": "ENTER KAFKA_BROKERS"
                 },
                 {
                     "name": "Kafka Consumer Group Id",
                     "description": "",
                     "sensitive": false,
                     "provided": false,
-                    "value": "Consumer_user_id"
+                    "value": "ENTER <user id>-group"
                 },
                 {
                     "name": "Database",
                     "description": "",
                     "sensitive": false,
                     "provided": false,
-                    "value": "user_id"
+                    "value": "ENTER <user id>"
                 },
                 {
                     "name": "CDPEnvironment",

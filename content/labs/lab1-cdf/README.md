@@ -48,7 +48,7 @@ From this point, you will need to enter the Flow configuration.
 Start by assigning a **Deployment Name**, **Target Project** as outlined below, and click **Next**.
 
 - For **Deployment Name**, please prefix the with your username. For example, `<username>-kafka-to-lakehouse`
-- Select `workshop` or `Unassigned` for the **Target Project**. This is a way to organize your flows.
+- Select `Unassigned` for the **Target Project**. Using a project is a way to organize your flows.
 
 ![Cloudera DataFlow Deploy Flow Step 2](cdf_deploy_flow_step2.png)
 
@@ -58,7 +58,7 @@ Make sure the option **Automatically start flow upon successful deployment** is 
 
 In this part of Parameters, you must enter the following values:
 
-- **CDP Workload User Password**: Enter your Workload Password. See the [Cloudera on Cloud Account Guide](../../guides/cdp-account/README.md#setting-your-cdp-workload-password) for details on how to set your Cloudra on Cloud workload password.
+- **CDP Workload User Password**: Enter your Workload Password. See the [Cloudera on Cloud Account Guide](../../guides/cdp-account/README.md#setting-your-cdp-workload-password) for details on how to set your Cloudera on Cloud workload password.
 - **CDP Workload Username**: Enter your Workload Username.
 - **Database**: Enter your assigned User ID (e.g. `user050`).
 - **Kafka Brokers**: `{{ kafka_brokers }}`

@@ -64,7 +64,7 @@ cdp_attendee_group:
   name: "{{ prefix }}-attendee" # NOTE: This can be a pre-existing group aligning with the Keycloak realm
   create_group: yes # For Terraform
   add_to_idbroker: yes
-  sync_on_login: yes
+  sync_on_login: no
   roles:
     - DFCatalogAdmin
     - DFCatalogViewer
@@ -122,10 +122,6 @@ df_custom_flows:
   - name: "{{ prefix }}-s3-to-kafka"
     file: files/cdf/s3_to_kafka.json
     description: "Load data from s3 file to telco_data Kafka topic"
-    comments: "Initial Version"
-  - name: "{{ prefix }}-s3-to-kafka_orig"
-    file: files/cdf/s3_to_kafka_orig.json
-    description: "ORIGINAL NOT WORKING Load data from s3 file to telco_data Kafka topic"
     comments: "Initial Version"
   - name: "{{ prefix }}-kafka-to-lakehouse"
     file: files/cdf/kafka_to_lakehouse.json
