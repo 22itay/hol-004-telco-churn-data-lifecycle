@@ -245,8 +245,7 @@ de:
       maximum_instances: "{{ num_attendees }}"
       # TODO:
       vc:
-        # name: "{{ prefix }}-vc"
-        name: "{{ prefix }}-vc-manual"
+        name: "{{ prefix }}-vc"
         spark_version: SPARK3_5
         cpu_requests: "{{ (instance_types.cde_default[infra_type | lower].cpu * num_attendees * 0.5) | int }}"
-        memory_requests: "{{ (instance_types.cde_default[infra_type | lower].mem * num_attendees * 0.5) | int }}"
+        memory_requests: "{{ (instance_types.cde_default[infra_type | lower].mem * num_attendees * 0.5) | int }}Gi"

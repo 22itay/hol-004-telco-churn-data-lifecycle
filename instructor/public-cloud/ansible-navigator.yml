@@ -26,7 +26,6 @@ ansible-navigator:
         - AWS_ACCESS_KEY_ID
         - AWS_SECRET_ACCESS_KEY
         - AWS_SESSION_TOKEN
-        - SSH_PUBLIC_KEY_FILE
         - SSH_PRIVATE_KEY_FILE
         - HOL_PREFIX
         - HOL_CDP_ENV
@@ -46,7 +45,5 @@ ansible-navigator:
     container-options:
       - "--network=host"
     volume-mounts:
-      - src: "${SSH_PUBLIC_KEY_FILE}"
-        dest: "${SSH_PUBLIC_KEY_FILE}"
       - src: "${SSH_PRIVATE_KEY_FILE}"
         dest: "${SSH_PRIVATE_KEY_FILE}"

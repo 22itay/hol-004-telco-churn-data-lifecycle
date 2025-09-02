@@ -1,7 +1,7 @@
 # ------- Global settings -------
 env_prefix = "{{ prefix }}"
 
-ssh_public_key_text = "{{ lookup('ansible.builtin.file', lookup('ansible.builtin.env', 'SSH_PUBLIC_KEY_FILE')) }}"
+ssh_public_key_text = "{{ ssh_public_key_text }}"
 
 # ------- Cloud Settings -------
 aws_region = "{{ region }}"

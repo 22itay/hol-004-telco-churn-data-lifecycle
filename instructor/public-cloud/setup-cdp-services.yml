@@ -16,7 +16,7 @@
       block:
         - name: Set environment name from either pre-existing environment or Terraform outputs
           ansible.builtin.set_fact:
-            cdp_environment_name: "{{ cdp_env | default(lookup('cloud.terraform.tf_output', 'cdp_environment_name', project_path=[playbook_dir,'tf-cdp-env'] | path_join)) }}"
+            cdp_environment_name: "{{ cdp_env if cdp_env is defined else lookup('cloud.terraform.tf_output', 'cdp_environment_name', project_path=[playbook_dir,'tf-cdp-env'] | path_join) }}"
 
         - name: Query for the CDP Public Cloud Environment
           cloudera.cloud.env_info:
@@ -71,7 +71,7 @@
           poll: 0
           register: __async
 
-############# Enable Data Services as required #############
+# ############# Enable Data Services as required #############
 
 # ** CDF - Start
 
@@ -227,6 +227,7 @@
 # ** CDF - Wait
     - name: Monitor the setup of CDF Service
       when:
+        - enable_cdf
         - __cdf_async is defined
       ansible.builtin.async_status:
         jid: "{{ __cdf_async.ansible_job_id }}"
@@ -240,6 +241,7 @@
 # ** CML - Wait
     - name: Monitor the set up of the CML
       when:
+        - enable_cml
         - __cml_async is defined
         - __cml_async.results is defined
         - __cml_async.results | length > 0
@@ -259,6 +261,7 @@
 # ** CDW - Wait
     - name: Monitor the setup of CDW Service - Azure
       when:
+        - enable_cdw
         - __cdw_azure_async is defined
         - __env_details.cloud_platform | lower == 'azure'
       ansible.builtin.async_status:
@@ -272,6 +275,7 @@
 
     - name: Monitor the setup of CDW Service - AWS
       when:
+        - enable_cdw
         - __cdw_aws_async is defined
         - __env_details.cloud_platform | lower == 'aws'
       ansible.builtin.async_status:
@@ -286,6 +290,7 @@
 # ** CDE - Wait
     - name: Monitor the set up of the CDE
       when:
+        - enable_cde
         - __cde_async is defined
         - __cde_async.results is defined
         - __cde_async.results | length > 0
@@ -305,8 +310,8 @@
 ############# Configure service resources for CDW and CDE #############
 
     - name: Configure CDW service resources
-      when:
-        - enable_cdw
+      # when:
+      #   - enable_cdw
       tags:
         - cdw        
       block:
@@ -383,8 +388,8 @@
 
 # CDE Virtual Cluster
     - name: Configure CDE service resources
-      when:
-        - enable_cde
+      # when:
+      #   - enable_cde
       tags:
         - cde 
       block:
@@ -401,7 +406,7 @@
             env: "{{ cdp_environment_name }}"
             spark_version: "{{ __cde_item.vc.spark_version | default(omit) }}"
             cpu_requests: "{{ (__cde_item.vc.cpu_requests | int) | default(omit) }}"
-            memory_requests: "{{ (__cde_item.vc.memory_requests | int) | default(omit) }}"
+            memory_requests: "{{ (__cde_item.vc.memory_requests) | default(omit) }}"
             # TODO: Add support for vc-tier
             state: present
             wait: True
@@ -410,4 +415,4 @@
           loop_control:
             loop_var: __cde_item
             label: "{{ __cde_item.name }}"
-          loop: "{{ de.definitions }}"                   
+          loop: "{{ de.definitions }}"

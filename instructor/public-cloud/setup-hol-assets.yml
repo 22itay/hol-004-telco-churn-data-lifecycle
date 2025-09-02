@@ -24,7 +24,7 @@
         # Find details about the environment
         - name: Set environment name from either pre-existing environment or Terraform outputs
           ansible.builtin.set_fact:
-            cdp_environment_name: "{{ cdp_env | default(lookup('cloud.terraform.tf_output', 'cdp_environment_name', project_path=[playbook_dir,'tf-cdp-env'] | path_join)) }}"
+            cdp_environment_name: "{{ cdp_env if cdp_env is defined else lookup('cloud.terraform.tf_output', 'cdp_environment_name', project_path=[playbook_dir,'tf-cdp-env'] | path_join) }}"
 
         - name: Query for the CDP Public Cloud Environment
           cloudera.cloud.env_info:
@@ -318,7 +318,7 @@
             fail_msg: "CDW Data Service not enabled for Environment, {{ cdp_environment_name }}"
             quiet: yes
 
-        - name: Get Hive Virtual Warehosue details
+        - name: Get Hive Virtual Warehouse details
           cloudera.cloud.dw_virtual_warehouse_info:
             cluster_id: "{{ __cdw_ds.clusters | map(attribute='id') | first }}"
             name: "{{ dw.hive_vw.vw_name_prefix }}-001"

@@ -17,7 +17,7 @@
         # Find details about the environment
         - name: Set environment name from either pre-existing environment or Terraform outputs
           ansible.builtin.set_fact:
-            cdp_environment_name: "{{ cdp_env | default(lookup('cloud.terraform.tf_output', 'cdp_environment_name', project_path=[playbook_dir,'tf-cdp-env'] | path_join)) }}"
+            cdp_environment_name: "{{ cdp_env if cdp_env is defined else lookup('cloud.terraform.tf_output', 'cdp_environment_name', project_path=[playbook_dir,'tf-cdp-env'] | path_join) }}"
 
         - name: Query for the CDP Public Cloud Environment
           cloudera.cloud.env_info:
