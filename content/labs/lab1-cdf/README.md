@@ -14,7 +14,7 @@ In this lab you will take a tour of Cloudera Data Flow by configuring and deploy
 
 Ensure the following requirements are met in order to run this exercise:
 
-- [ ] Hands on Lab user id
+- [ ] Your **CDP Workload Password** is set by following the See the [Cloudera on Cloud Account Guide](../../guides/cdp-account/README.md#setting-your-cdp-workload-password).
 
 ## Tasks
 
@@ -60,9 +60,8 @@ In this part of Parameters, you must enter the following values:
 
 - **CDP Workload User Password**: Enter your Workload Password. See the [Cloudera on Cloud Account Guide](../../guides/cdp-account/README.md#setting-your-cdp-workload-password) for details on how to set your Cloudera on Cloud workload password.
 - **CDP Workload Username**: Enter your Workload Username.
-- **Database**: Enter your assigned User ID (e.g. `user050`).
+- **CDW Hive JDBC url**: `{{ hive_jdbc_url }}`
 - **Kafka Brokers**: `{{ kafka_brokers }}`
-- **Kafka Consumer Group Id**: Enter `<user id>-group` (eg. `user050-group`)
 - **Kafka Topic**: `{{ kafka_topic }}`
 
 For the purposes of this workshop, the remaining values were filled out for you and don't need to change.
@@ -70,7 +69,7 @@ For the purposes of this workshop, the remaining values were filled out for you 
 Review that the parameters were entered correctly. Then click **Next**.
 
 !!! NOTE
-    For the purposes of the workshop, your User ID (e.g. `user050`) is the name of the database where you will store the data (which has already been created for you), and the name of the Kafka Consumer Group ID for reading messages.
+    For the purposes of the workshop, your Username is also the name of the database where you will store the data, and the name of the Kafka Consumer Group ID for reading messages.
 
 ![Cloudera DataFlow Deploy Flow Step 4](cdf_deploy_flow_step4.png)
 
@@ -104,16 +103,20 @@ It is time to execute the application processes from the graphical Flow Manageme
 
 ![Cloudera DataFlow View in NiFi](cdf_view_in_nifi.png)
 
-Double-click on the Process Group to open it.
+Double-click on the churn-kafka-to-lakehouse Process Group to open it.
 
 ![NiFi Open Process Group](cdf_nifi_open_process_group.png)
 
-When opening the Process Group, you should be able to see the Processors that compose the Flow application. To summarize, there are four Processors:
+When opening the Process Group, there are two further Process Groups. Click on the `Kafka to Iceberg Process Group` to see the Processors that compose the main Flow application. 
+
+![NiFi Open Kafka to Iceberg Process Group](cdf_nifi_open_kafka_to_iceberg_process_group.png)
+
+To summarize, there are four Processors:
 
 - _ConsumeKakfaRecord_, consumes data from the Kafka topic, reading the data in JSON and outputting in AVRO.
 - _MergeRecords_, to group the flow files and streamline the data flow.
 - _ConvertAvroToParquet_, conversion needed to store the data in PARQUET format.
-- _PutIceberg_, to insert the data into the table in the Lakehouse. The destination table is called telco_kafka_iceberg, and each user has an assigned database (`<user_id>` is the name of the database).
+- _PutIceberg_, to insert the data into the table in the Lakehouse. The destination table is called telco_kafka_iceberg, and each user has an assigned database (`<CDP Workload Username>` is the name of the database).
 
 As you can see, the Processors are not started, they are paused.
 

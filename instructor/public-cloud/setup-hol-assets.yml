@@ -302,6 +302,7 @@
     - name: Data Warehouse Configuration
       tags:
         - cdw
+        - dataviz
       block:
 
         # Find details about CDW service        
@@ -465,13 +466,9 @@
         dest: "{{ __sql_scripts_temp_dir.path }}/{{ item | regex_replace('.j2', '') }}"
       loop:
         - ddl_master_tables_create.sql
-        - ddl_user_tables_create.sql.j2
-      vars:
-        NUMBER_USERS: "{{ num_attendees }}"
 
     - name: Run the SQL queries using beeline
       ansible.builtin.command: 
         cmd: "beeline -u {{ hive_jdbc_url }} -n {{ cdp_workload_username }} -p {{ cdp_workload_password }} -f {{ __sql_scripts_temp_dir.path }}/{{ item }}"
       loop:
         - ddl_master_tables_create.sql
-        - ddl_user_tables_create.sql

@@ -12,9 +12,7 @@ In this lab you will get an overview of Cloudera Data Engineering by configuring
 
 ## Requirements
 
-Ensure the following requirements are met in order to run this exercise:
-
-- [ ] Hands on Lab user id
+None.
 
 ## Tasks
 
@@ -38,7 +36,7 @@ Click on **Jobs** from the left menu to create an Airflow job.
     * **CDE-updateTable** - generate random changes in rich table to visualize Lakehouse Time Travel functionality.
     * **CDE-telco_data_enrichment** - process in Spark (Python) to enrich the data ingested from Kafka and save to a new table.
 
-In the Job window, ensure that the `{{ cde_virtual_cluster_name }}` Virtual Cluster is selected at the top of the windown. Then click on **Create Job**.s
+In the Job window, ensure that the `{{ cde_virtual_cluster_name }}` Virtual Cluster is selected at the top of the windown. Then click on **Create Job**.
 
 ![Cloudera Data Engineering Create Job](cde_create_job.png)
 
@@ -65,7 +63,7 @@ Click on the CDE Job button and drag onto the canvas, entering the following set
 - **Title/Name**: `Data Enrichment`
 - **Select Job**: Select `CDE-telco_data_enrichment`
 - Check the checkbox **Override Spark values**. Additional options will appear below.
-- **Arguments**: Enter your assigned User ID (e.g. `user050`).
+- **Arguments**: Enter your Workload Username.
 
 ![Add Data Enrichment Job](cde_add_enrichment_job.png)
 
@@ -79,7 +77,7 @@ the following settings:
 - **Title/Name**: `Table Update`
 - **Select Job**: Select `CDE-updateTable`
 - Check the checkbox **Override Spark values**. Additional options will appear below.
-- **Arguments**: Enter your assigned User ID (e.g. `user050`).
+- **Arguments**: Enter your Workload Username.
 
 ![Add Table Update Job](cde_add_table_update_job.png)
 
@@ -120,7 +118,7 @@ You can see more information about the execution by clicking on the **Graph** vi
 
 ![Inspect Running Job](cde_run_job_information.png)
 
-Once both jobs go to status success, make sure the overall pipeline status is success by clicking on the **Details** view. If _Total success_ is the execution was successful.
+Once both jobs go to status success, make sure the overall pipeline status is success by clicking on the **Details** view. If _Total success_ is 1 the execution was successful.
 
 ![Successful Job Execution](cde_run_job_success.png)
 

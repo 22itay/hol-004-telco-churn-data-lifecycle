@@ -13,7 +13,6 @@ In this lab you will dive deeper into Cloudera Data Vizualization by using the o
 
 Ensure the following requirements are met in order to run this exercise:
 
-- [ ] Hands on Lab user id
 - [ ] Name of the Impala Data Warehouse assigned to your user
 - [ ] Name of Data Vizualization Cluster assigned to your user
 - [ ] Cloudera AI models deployed as part of [Lab 4 - Cloudera AI](../lab4-cai/README.md)
@@ -45,7 +44,7 @@ In Data Visualization, click on the **Data Viz** button for the cluster instance
 
 ### Add Field to Data Vizualization Dataset
 
-Edit the previously created Dataset, in **Data** -> **`<User Id>`.telco_data_curated**.
+Edit the previously created Dataset, in **Data** -> **`<Workload Username>`.telco_data_curated**.
 
 ![CDW Data Viz Dashboard CML Field Step 1](cdw_dv_cml_dashboard_step1.png)
 

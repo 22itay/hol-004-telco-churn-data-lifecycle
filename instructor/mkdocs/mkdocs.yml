@@ -87,6 +87,7 @@ plugins:
 extra:
     cdp_environment_name: churn-hol-cdp-env
     kafka_to_lakehouse_flow_name: churn-hol-kafka-to-lakehouse
+    hive_jdbc_url: jdbc:hive2://hs2-churn-hol-hive-001.dw-churn-hol-cdp-env.a465-9q4k.cloudera.site/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;
     kafka_brokers: churn-hol-smm-dh-corebroker2.churn-ho.a465-9q4k.cloudera.site:9093, churn-hol-smm-dh-corebroker1.churn-ho.a465-9q4k.cloudera.site:9093, churn-hol-smm-dh-corebroker0.churn-ho.a465-9q4k.cloudera.site:9093
     kafka_topic: telco_data
     cai_workbench_name: churn-hol-default-ml

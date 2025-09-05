@@ -14,7 +14,6 @@ In this lab you will take a tour of Cloudera Data Warehouse by querying data fro
 
 Ensure the following requirements are met in order to run this exercise:
 
-- [ ] Hands on Lab user id
 - [ ] Name of the Impala Data Warehouse assigned to your user
 - [ ] Name of Data Vizualization Cluster assigned to your user
 
@@ -56,9 +55,9 @@ appear to enter the information of the new data source.
 
 Enter the information for the new data source as follows:
 
-- **Dataset title**: Use the naming convention `<User Id>.telco_curated_data`, with your assigned User ID (eg. `user050-telco_curated_data`)
+- **Dataset title**: Use the naming convention `<Workload Username>.telco_curated_data`
 - **Dataset Source**: Select `From table`
-- **Select Database**: Enter your assigned User ID, `<User Id>`
+- **Select Database**: Enter your Workload Username
 - **Select Table**: Select `telco_data_curated`
 
 Click on **CREATE** to create the new Dataset.

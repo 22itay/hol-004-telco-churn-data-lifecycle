@@ -124,7 +124,7 @@ df_custom_flows:
     description: "Load data from s3 file to telco_data Kafka topic"
     comments: "Initial Version"
   - name: "{{ prefix }}-kafka-to-lakehouse"
-    file: files/cdf/kafka_to_lakehouse.json
+    file: files/cdf/kafka-to-lakehouse-with-table-creation.json
     description: "Load data from Kafka into Lakehouse tables"
     comments: "Initial Version"
 
@@ -243,7 +243,6 @@ de:
       loadbalancer_ip_ranges: "{{ ingress_extra_cidrs_and_ports.cidrs }}"
       minimum_instances: 1
       maximum_instances: "{{ num_attendees }}"
-      # TODO:
       vc:
         name: "{{ prefix }}-vc"
         spark_version: SPARK3_5

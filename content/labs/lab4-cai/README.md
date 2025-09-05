@@ -11,9 +11,7 @@ In this lab you will get hands-on with Cloudera AI by training a machine learnin
 
 ## Requirements
 
-Ensure the following requirements are met in order to run this exercise:
-
-- [ ] Hands on Lab user id
+None.
 
 ## Tasks
 
@@ -69,7 +67,7 @@ In the Advanced settings, under Environment Variables, add a new variable by pre
 For the new environment variable enter the following:
 
 - **Key**: Enter `DATABASE`.
-- **Value**: Enter your assigned User ID (e.g. `user050`).
+- **Value**: Enter your Workload Username.
 
 Click on the button **Submit** to save the new environment variable.
 

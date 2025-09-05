@@ -106,7 +106,7 @@ ansible-navigator run teardown-cdp-env.yml -e @./config.yml
 
 | Issue | Description | Workaround |
 |-------|-------------|------------|
-| Automation of DataViz remote data setting is not currently possible. | A way to easily automate setting adding the Cloudera AI model URL in each Cloudera DataViz cluster is not yet available | Manually configure the Remote Data Setting from each DataViz cluster to reach Cloudera AI model url/workbench |
+| Automation of DataViz remote data setting is not currently possible. | A way to easily automate setting adding the Cloudera AI model URL in each Cloudera DataViz cluster is not yet available | Manually configure the Remote Data Setting from each DataViz cluster to reach Cloudera AI model url/workbench. This is done via the DataViz `Site Settings` -> `Advanced Settings`. Set _URLs that remote data columns can be fetched from_ to include a url of the form `https://modelservice.<workspace_url>/model` |
 | DataViz cluster teardown failed during `teardown-cdp-services.yml` playbook | The API lookup of existing DataViz clusters periodically fails. This sometimes causes the `Remove the CDW DataViz Clusters` task to fail with error _unable to get viz-webapp (cause: sql: no rows in result set)_  | Rerun the `teardown-cdp-services.yml`. |
 
 ## Publishing the Workshop Guide to GitHub Pages
