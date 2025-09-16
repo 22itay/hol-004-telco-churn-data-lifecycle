@@ -191,6 +191,7 @@
         loadbalancer_ips: "{{ __cde_item.loadbalancer_ip_ranges }}"
         minimum_instances: "{{ __cde_item.minimum_instances }}"
         maximum_instances: "{{ __cde_item.maximum_instances }}"
+        timeout: 7200
         wait: yes
       loop_control:
         loop_var: __cde_item

@@ -17,12 +17,43 @@ provider "aws" {
   }
 }
 
-# Create an AWS EC2 keypair
-resource "aws_key_pair" "cdp_keypair" {
-  key_name   = "${var.env_prefix}-keypair"
-  public_key = var.ssh_public_key_text
+# ------- SSH Keypair -------
+locals {
+  # Determine if we need to generate a keypair
+  create_keypair = var.ssh_private_key_file == null ? true : false
+
+  # Path to the private key file to use
+  private_key_file = local.create_keypair ? abspath(local_sensitive_file.pem_file[0].filename) : abspath(pathexpand(var.ssh_private_key_file))
 }
 
+# Generate a new private key if needed
+resource "tls_private_key" "generated_private_key" {
+  count     = local.create_keypair ? 1 : 0
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+# Save the generated private key to a file if needed
+resource "local_sensitive_file" "pem_file" {
+  count                = local.create_keypair ? 1 : 0
+  filename             = "../${var.env_prefix}-ssh-key.pem"
+  file_permission      = "600"
+  directory_permission = "700"
+  content              = tls_private_key.generated_private_key[0].private_key_pem
+}
+
+# Load the public key from the correct private key file
+data "tls_public_key" "selected" {
+  private_key_openssh = local.create_keypair ? tls_private_key.generated_private_key[0].private_key_openssh : file(abspath(pathexpand(var.ssh_private_key_file)))
+}
+
+# Create the AWS EC2 keypair from the selected public key
+resource "aws_key_pair" "cdp_keypair" {
+  key_name   = "${var.env_prefix}-keypair"
+  public_key = trimspace(data.tls_public_key.selected.public_key_openssh)
+}
+
+# ------- CDP Environment Deployment -------
 module "cdp_deploy" {
     source = "git::https://github.com/cloudera-labs/cdp-tf-quickstarts.git//aws"
     

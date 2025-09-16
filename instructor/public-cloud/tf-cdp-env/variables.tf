@@ -16,11 +16,11 @@ variable "env_tags" {
   default = null
 }
 
-variable "ssh_public_key_text" {
-  type = string
-
-  description = "SSH Public Key contents"
-
+# ------- SSH Resources -------
+variable "ssh_private_key_file" {
+  type        = string
+  description = "Local SSH private key file"
+  default     = null
 }
 
 # ------- CDP Environment Deployment -------

@@ -17,7 +17,6 @@ The `public-cloud/` folder contains Ansible playbooks and Terraform configuratio
 export AWS_ACCESS_KEY_ID=your-aws-access-key-id
 export AWS_SECRET_ACCESS_KEY=your-aws-secret-access-key
 export AWS_SESSION_TOKEN=your-aws-session-token # (optional if using AWS SSO)
-export SSH_PRIVATE_KEY_FILE=path-to-ssh-private-key-file
 export CDP_ACCESS_KEY_ID=your-cdp-access-key-id
 export CDP_PRIVATE_KEY=your-cdp-private-key
 ```

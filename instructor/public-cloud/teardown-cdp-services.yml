@@ -20,7 +20,7 @@
 
         - name: Retrieve details of the CDP environment
           cloudera.cloud.env_info:
-            name: "{{ cdp_env }}"
+            name: "{{ cdp_environment_name }}"
           register: __cdp_environment_info
 
         - name: Verify that environment is in running state
@@ -28,22 +28,22 @@
             that:
               - __cdp_environment_info.environments | length == 1
               - __cdp_environment_info.environments[0].status == 'AVAILABLE'
-            fail_msg: "Environemt '{{ cdp_env }}' not found or not in Available state"
+            fail_msg: "Environemt '{{ cdp_environment_name }}' not found or not in Available state"
 
         # Extract details about the environment
         - name: Find details about __cdp_environments_to_delete
           ansible.builtin.set_fact:
             __env_details: "{{ env_details }}"
           vars:
-            network_details: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).network | default([]) }}"
-            cloud_platform: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).cloudPlatform }}"
+            network_details: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).network | default([]) }}"
+            cloud_platform: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).cloudPlatform }}"
             env_details: 
-              env_name: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).environmentName }}"
-              crn: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).crn }}"
-              status: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).status }}"
+              env_name: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).environmentName }}"
+              crn: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).crn }}"
+              status: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).status }}"
               cloud_platform: "{{ cloud_platform }}"
-              region: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).region }}"
-              credential_name: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_env)|first).credentialName| default(omit)}}"
+              region: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).region }}"
+              credential_name: "{{ (__cdp_environment_info.environments |  selectattr('environmentName', 'contains', cdp_environment_name)|first).credentialName| default(omit)}}"
               # network id key is cloud platform dependent
               network_id: "{{ network_details[cloud_platform | lower] | default(None) | community.general.json_query('networkId||vpcId||networkName') or omit }}"
               subnets: "{{ network_details | community.general.json_query('subnetIds') or omit }}"

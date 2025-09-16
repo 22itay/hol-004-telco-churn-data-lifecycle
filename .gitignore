@@ -4,6 +4,9 @@ instructor/mkdocs/build/*
 **/deployment_info.yml
 **/example.ico
 
+# Generated SSH keys
+*.pem
+
 # Local collections
 collections/*
 !collections/requirements.yml

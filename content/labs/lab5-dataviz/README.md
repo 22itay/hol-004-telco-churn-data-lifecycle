@@ -66,13 +66,13 @@ In the popup window that appears, enter the name of the new field in **Display N
 
 Go to the **Expression** tab and enter the following value in the Expression field. This will allow you to call the REST API of the Model you have previously deployed.
 
-```
-cviz_rest('{"url":"<url_del_workspace>","accessKey":"<access_key>","colnames":["monthlycharges","totalcharges","tenure","gender","dependents","onlinesecurity","multiplelines","internetservice","seniorcitizen","techsupport", "contract","streamingmovies", "deviceprotection","paymentmethod","streamingtv","phoneservice", "paperlessbilling","partner","onlinebackup"],"response_colname":"result"}')
+```json
+cviz_rest('{"url":"<url_workspace>","accessKey":"<access_key>","colnames":["monthlycharges","totalcharges","tenure","gender","dependents","onlinesecurity","multiplelines","internetservice","seniorcitizen","techsupport","contract","streamingmovies","deviceprotection","paymentmethod","streamingtv","phoneservice","paperlessbilling","partner","onlinebackup"],"response_colname":"result","config":{"response_key":"response"}}')
 ```
 
 ![CDW Data Viz Dashboard CML Field Step 6](cdw_dv_cml_dashboard_step6.png)
 
-We will now get values for the `<url_del_workspace>` and `<access_key>` placeholders from our deployed model in Cloudera AI.
+We will now get values for the `<url_workspace>` and `<access_key>` placeholders from our deployed model in Cloudera AI.
 
 ### Retrieve Field Details from Cloudera AI model
 
@@ -86,7 +86,7 @@ In the Overview tab, copy the **URL** that allows you to interact and call the w
 
 ![CDW Data Viz Dashboard CML Field Step 8](cdw_dv_cml_dashboard_step8.png)
 
-In Data Vizualization, replace the copied Workspace API value in the placeholder attribute `<url_del_workspace>` of the Expression field.
+In Data Vizualization, replace the copied Workspace API value in the placeholder attribute `<url_workspace>` of the Expression field.
 
 ![CDW Data Viz Dashboard CML Field Step 9](cdw_dv_cml_dashboard_step9.png)
 

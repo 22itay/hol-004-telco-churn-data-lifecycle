@@ -26,19 +26,10 @@
         - platform
       block:
 
-        - name: Get SSH public key from private key
-          community.crypto.openssh_keypair:
-            path: "{{ lookup('ansible.builtin.env', 'SSH_PRIVATE_KEY_FILE') }}"
-            state: present
-            regenerate: never
-          register: __ssh_keypair
-
         - name: Create TF input variables file for TF quickstart module
           ansible.builtin.template:
             src: cdp_env_terraform.tfvars.j2
             dest: "tf-cdp-env/terraform.tfvars"
-          vars:
-            ssh_public_key_text: "{{ __ssh_keypair.public_key }}"
 
         - name: Check for existing Terraform state file
           ansible.builtin.stat:

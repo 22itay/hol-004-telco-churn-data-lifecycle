@@ -1,7 +1,10 @@
 # ------- Global settings -------
 env_prefix = "{{ prefix }}"
 
-ssh_public_key_text = "{{ ssh_public_key_text }}"
+# ------- SSH settings -------
+{% if ssh_pem_file is defined %}
+ssh_private_key_file = "{{ ssh_pem_file }}"
+{% endif %}
 
 # ------- Cloud Settings -------
 aws_region = "{{ region }}"
