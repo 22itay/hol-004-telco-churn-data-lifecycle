@@ -159,7 +159,7 @@ Right click on **ConsumeKafkaRecord_2_6** processor and click on **Configure**
 
 ![NiFi Configure Processor](cdf_nifi_modify_config.png)
 
-Change the consumer group id by clicking on **Group ID** value and chaning the consumer group id (eg. `#{Kafka Consumer Group Id}-v1`). Click **OK** and **Apply**
+Under the **Properties** tab, change the consumer group id by clicking on **Group ID** value and changing the consumer group id (eg. `#{CDP Workload Username}-group-v1`). Click **OK** and **Apply**
 
 ![NiFi Change Group ID property](cdf_nifi_change_group_id_config.png)
 
