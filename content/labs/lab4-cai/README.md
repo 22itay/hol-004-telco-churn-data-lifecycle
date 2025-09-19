@@ -138,7 +138,7 @@ On this screen you will see the three runs of this experiment. Note the **precis
 
 ![Cloudera AI Experiement Details](cai_experiment_details.png)
 
-### Run Get Champion Script
+### Run the Deploy Model Script
 
 Let's go back to the session to run the last code. Since sessions run in Kubernetes containers, it's very easy to get back to where we were.
 
@@ -146,25 +146,25 @@ Click on the **Sessions** button from the left menu. The list of active sessions
 
 ![Cloudera AI Session List Details](cai_session_list.png)
 
-The third and last script/code to run is `2_get_champion.py`. This Python code takes the hyper parameter of the execution of the Experiment with the best precision and deploys two Models as REST APIs, one to be integrated in Data Visualization and another for single calls to the model.
+The third and last script/code to run is `2_deploy_models.py`. This Python code takes the hyper parameter of the execution of the Experiment with the best precision and deploys a model as a REST API. This model can be integrated in Data Visualization.
 
 Select (just one click) the file in the bar located on the left side of the interface, this will make the code appear in the editor. Once the file is selected, click on the :material-play-box: button to run the code.
 
-![Cloudera AI Run Get Champion Script](cai_run_champion_script.png)
+![Cloudera AI Run Deploy Model Script](cai_run_champion_script.png)
 
 After a few seconds, you will see the message `Deploying ModelViz....` repeated several times, and the bottom command bar will be red.
 
-![Cloudera AI Get Champion Script Deploy Model](cai_champion_script_deploying.png)
+![Cloudera AI Deploy Model Script Running](cai_champion_script_deploying.png)
 
 After about 2 minutes, the last message should be _Model is deployed_, and the bar will be green. This means that the Deployment of the two Models is complete.
 
 Click on the **Project** button, located in the upper right bar of the session to return to the home page of the project.
 
-![Cloudera AI Get Champion Script Deploy Success](cai_champion_script_deploy_success.png)
+![Cloudera AI Deploy Model Script Success](cai_champion_script_deploy_success.png)
 
-### Test Deployed Models
+### Test Deployed Model
 
-Once on the home page of the project, you will see the two Models displayed. Click on the one that starts with **ModelOpsChurn**.
+Once on the home page of the project, you will the deployed Model displayed. Click on the model that starts with **ModelViz**.
 
 ![Cloudera AI Deployed Models](cai_project_deployed_models.png)
 
@@ -178,6 +178,7 @@ What you see in the **Result** field is the response from the model in JSON form
 
 If you wish, you can change some of the parameters of the **Input** field (for example, change some values from `No` to `Yes`), and call the model again, and observe the value of the attribute probability of the response to see if there were any changes.
 
+TODO:
 ![Cloudera AI Churn Model Test](cai_model_churn_test.png)
 
 **End of Lab 4**
