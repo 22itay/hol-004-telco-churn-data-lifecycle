@@ -1,20 +1,23 @@
 site_name: "Cloudera Data Lifecycle Hands on Lab"
 site_author: GOES
-copyright: Cloudera Inc. 2025
+copyright: 2025 Cloudera, Inc. All rights reserved.<br><a href="https://www.cloudera.com/legal/terms-and-conditions.html" target="_blank">Terms & Conditions | </a>  <a href="https://www.cloudera.com/legal/policies.html" target="_blank"> Privacy Policy and Data Policy</a>
+repo_url: https://github.infra.cloudera.com/GOES/hol-004-telco-churn-data-lifecycle
+repo_name: goes/hol-004-telco-churn-data-lifecycle
+
 theme:
     name: material
     logo: assets/images/logo-cloudera-white.svg
     favicon: assets/images/favicon.ico
     palette:
-    - scheme: default
-      primary: #FFFFFF
-      accent: #121212
+    - scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         name: Switch to light mode
         icon: material/weather-sunny
-    - scheme: slate
-      primary: pink
-      accent: pink
+    - scheme: default
+      primary: custom
+      accent: custom
       toggle:
         name: Switch to dark mode
         icon: material/weather-night
@@ -85,6 +88,7 @@ plugins:
 
 # Define values for macros here
 extra:
+    generator: false
     cdp_environment_name: churn-hol-cdp-env
     kafka_to_lakehouse_flow_name: churn-hol-kafka-to-lakehouse
     hive_jdbc_url: jdbc:hive2://hs2-churn-hol-hive-001.dw-churn-hol-cdp-env.a465-9q4k.cloudera.site/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;
