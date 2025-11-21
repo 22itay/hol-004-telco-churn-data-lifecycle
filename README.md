@@ -20,3 +20,5 @@ Hands on Lab for showcasing the Cloudera on cloud Data Lifecycle using a Telco C
 ## Contributing
 
 Feel free to open an issue or submit a pull request if you have found a typo or have an improvement.
+
+![Umami metrics](https://metrics.cloudera-labs.com/p/i6Ggp2UD8)
