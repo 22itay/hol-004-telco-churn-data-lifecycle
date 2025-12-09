@@ -92,7 +92,7 @@ tags:
 
 # Network connectivity
 ingress_extra_cidrs_and_ports:
-  cidrs: "{{ (lookup('cloudera.infra.global_vpn', descriptions=True) | dict2items | selectattr('value', 'regex', 'Prisma') | map(attribute='key') | list) }}"
+  cidrs: "{{ lookup('cloudera.infra.global_vpn', descriptions=True) | selectattr('description', 'search', 'Prisma') | map(attribute='cidr') | list }}"
   ports: [22, 443]      # Cloud-only access
 
 ###########################
