@@ -2,6 +2,17 @@
 
 This guide provides detailed instructions on setting up the workshop environment, preparing virtual machines with the necessary prerequisites, and publishing the workshop guide for participants.
 
+> [!IMPORTANT]
+> **POC or Workshop Environment Request**
+>
+> If the sales cycle requires a Cloudera-paid POC or Workshop, this needs VP approval and must be done in a separate CDP tenant and cloud account.
+> 
+> **Action Required:** Raise a JIRA using the [Workshop Request Template](https://cloudera.atlassian.net/jira/software/c/projects/CDPAR/form/467). All fields in the description are required. Any missing information will delay the process.
+>
+> **POC Duration:** The duration of the POC should be two weeks or less. Please give ample advance notice to accommodate tenant rotation scheduling.
+>
+> For complete details on requirements, responsibilities, and processes, see the [CDP Tenants for POCs/HOLs/Workshops Wiki](https://cloudera.atlassian.net/wiki/spaces/SE/pages/1542750294/CDP+Tenants+for+Cloudera+Paid+POCs+HOLs+and+Workshops).
+
 ## Hands on Lab Cloudera on Cloud Environment Setup
 
 The `public-cloud/` folder contains Ansible playbooks and Terraform configuration files to setup the Cloudera on Cloud environment, data services. The setup playbooks also create assets required for the Hands on Lab.
