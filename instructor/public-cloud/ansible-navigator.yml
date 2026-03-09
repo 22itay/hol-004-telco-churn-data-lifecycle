@@ -35,6 +35,6 @@ ansible-navigator:
         ANSIBLE_SSH_CONTROL_PATH: "/dev/shm/cp%%h-%%p-%%r"
     image: docker-sandbox.infra.cloudera.com/goes/hol-churn-env:latest
     pull:
-      policy: missing
+      policy: tag
     container-options:
       - "--network=host"

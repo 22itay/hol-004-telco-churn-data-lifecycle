@@ -47,13 +47,13 @@ Select the Impala Virtual Warehouse instace your user was assigned and click the
 Start with simple queries to understand the dataset's structure and contents.
 
 !!! important
-    Enter your workload username when prompted for a value of **`DATABASE`** variable in the below queries.
+    In the below queries, the name of the database will be your workload username.
 
 View the schema and first few rows to get a quick overview of the columns and data types.
 
 ```sql
 SELECT * 
-FROM ${DATABASE}.telco_iceberg_kafka 
+FROM USERNAME.telco_iceberg_kafka 
 LIMIT 10;
 ```
 
@@ -63,7 +63,7 @@ Count the total number of rows to understand the size of the dataset.
 
 ```sql
 SELECT COUNT(*) 
-FROM ${DATABASE}.telco_iceberg_kafka;
+FROM USERNAME.telco_iceberg_kafka;
 ```
 
 ![Cloudera Data Warehouse Query 2](cdw_vw_query_2.png)
@@ -72,7 +72,7 @@ Examine the distribution of key categorical columns like `gender` and the target
 
 ```sql
 SELECT Churn, COUNT(*) AS count 
-FROM ${DATABASE}.telco_iceberg_kafka 
+FROM USERNAME.telco_iceberg_kafka 
 GROUP BY Churn;
 ```
 
@@ -90,7 +90,7 @@ SELECT
   COUNT(*) AS total_customers,
   SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
   CAST(SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS DOUBLE) / COUNT(*) AS churn_rate
-FROM ${DATABASE}.telco_iceberg_kafka
+FROM USERNAME.telco_iceberg_kafka
 GROUP BY Contract
 ORDER BY churn_rate DESC;
 ```
@@ -104,7 +104,7 @@ SELECT
   Churn,
   AVG(CAST(MonthlyCharges AS DOUBLE)) AS avg_monthly_charges,
   AVG(CAST(TotalCharges AS DOUBLE)) AS avg_total_charges
-FROM ${DATABASE}.telco_iceberg_kafka
+FROM USERNAME.telco_iceberg_kafka
 GROUP BY Churn;
 ```
 
@@ -124,7 +124,7 @@ SELECT
   COUNT(*) AS total_customers,
   SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
   CAST(SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS DOUBLE) / COUNT(*) AS churn_rate
-FROM ${DATABASE}.telco_iceberg_kafka
+FROM USERNAME.telco_iceberg_kafka
 GROUP BY
   CASE
     WHEN CAST(tenure AS INT) <= 12 THEN '0-12 months'
@@ -143,7 +143,7 @@ ORDER BY tenure_group;
 Explore the properties of the `telco_iceberg_kafka` table and confirm it is and Iceberg table by exuting the query below in Hue. Note in particular the `Table Type`, `SerDe Library`, and `Location` properties.
 
 ```sql
-DESCRIBE FORMATTED ${DABASE}.telco_iceberg_kafka;
+DESCRIBE FORMATTED USERNAME.telco_iceberg_kafka;
 ```
 
 ![Cloudera Data Warehouse Query 7](cdw_vw_query_7.png)
@@ -153,11 +153,11 @@ DESCRIBE FORMATTED ${DABASE}.telco_iceberg_kafka;
 This query adds a new column to the table. In Iceberg, this is a fast, metadata-only change that doesn't require rewriting any existing data files.
 
 ```sql
-ALTER TABLE ${DATABASE}.telco_iceberg_kafka 
+ALTER TABLE USERNAME.telco_iceberg_kafka 
 ADD COLUMNS (CustomerSegment STRING);
 
 -- preview the table to show the newly added column
-SELECT * FROM ${DATABASE}.telco_iceberg_kafka LIMIT 10;
+SELECT * FROM USERNAME.telco_iceberg_kafka LIMIT 10;
 ```
 
 ![Cloudera Data Warehouse Query 8](cdw_vw_query_8.png)
@@ -166,7 +166,7 @@ SELECT * FROM ${DATABASE}.telco_iceberg_kafka LIMIT 10;
 
 ```sql
 DELETE 
-FROM ${DATABASE}.telco_iceberg_kafka 
+FROM USERNAME.telco_iceberg_kafka 
 WHERE customerID = '3074-GQWYX';
 ```
 
@@ -178,7 +178,7 @@ WHERE customerID = '3074-GQWYX';
     * You will see output that includes the snapshot ID for each change. You can select the snapshot ID from before the ALTER TABLE and DELETE operations.
 
 ```sql
-DESCRIBE HISTORY ${DATABASE}.telco_iceberg_kafka;
+DESCRIBE HISTORY USERNAME.telco_iceberg_kafka;
 ```
 
 ![Cloudera Data Warehouse Query 10](cdw_vw_query_10.png)
@@ -187,7 +187,7 @@ DESCRIBE HISTORY ${DATABASE}.telco_iceberg_kafka;
 
 ```sql
 SELECT COUNT(*) 
-FROM ${DATABASE}.telco_iceberg_kafka
+FROM USERNAME.telco_iceberg_kafka
 FOR SYSTEM_VERSION AS OF ${SNAPSHOT_ID};
 ```
 
@@ -216,9 +216,9 @@ appear to enter the information of the new data source.
 
 Enter the information for the new data source as follows:
 
-- **Dataset title**: Use the naming convention `<Workload Username>.telco_curated_data`
+- **Dataset title**: Use the naming convention `USERNAME.telco_curated_data`
 - **Dataset Source**: Select `From table`
-- **Select Database**: Enter your Workload Username
+- **Select Database**: Enter your Workload Username, `USERNAME`
 - **Select Table**: Select `telco_data_curated`
 
 Click on **CREATE** to create the new Dataset.

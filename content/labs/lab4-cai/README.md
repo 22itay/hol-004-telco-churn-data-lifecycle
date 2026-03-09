@@ -67,7 +67,7 @@ In the Advanced settings, under Environment Variables, add a new variable by pre
 For the new environment variable enter the following:
 
 - **Key**: Enter `DATABASE`.
-- **Value**: Enter your Workload Username.
+- **Value**: Enter your Workload Username, `USERNAME`
 
 Click on the button **Submit** to save the new environment variable.
 
@@ -178,7 +178,6 @@ What you see in the **Result** field is the response from the model in JSON form
 
 If you wish, you can change some of the parameters of the **Input** field (for example, change some values from `No` to `Yes`), and call the model again, and observe the value of the attribute probability of the response to see if there were any changes.
 
-TODO:
 ![Cloudera AI Churn Model Test](cai_model_churn_test.png)
 
 **End of Lab 4**

@@ -35,6 +35,8 @@ site_dir: './build'
 # not_in_nav: |
 extra_css:
   - assets/stylesheets/extra.css
+extra_javascript:
+  - assets/javascripts/username-replacer.js
 use_directory_urls: false
 
 nav:
@@ -82,9 +84,6 @@ plugins:
   #     output_path: exercise_guide.pdf
   - glightbox
   - macros
-#   - macros:
-#       include_yaml:
-#         - template_data/data.yml
 
 # Define values for macros here
 extra:

@@ -7,6 +7,23 @@ hide:
 
 Welcome to this Data Lifecycle Hands on Lab, where you'll explore the full data lifecycle through a real-world use case: predicting customer churn for a telecommunications company. This lab provides practical experience using _Cloudera on cloud_ data services, guiding you through key stages from data ingestion and processing to analysis and actionable insights.
 
+!!! tip "Update Lab Guide for your assigned username"
+    By entering your assigned username (e.g. `user001`) and clicking the **UPDATE EXAMPLES** button, the code examples you'll be customized for your user. 
+    
+    Click the reset button to start again if you make a mistake.
+    
+    <div class="username-input-container">
+        <input type="text" id="user-username-input" placeholder="e.g., john.doe">
+        <button id="user-username-save">UPDATE EXAMPLES</button>
+        <button id="user-username-clear">RESET</button>
+    </div>
+
+    ```sql title="Test Block"
+    changed_user=USERNAME;
+    ```
+
+    `changed_user=USERNAME;`
+    
 !!! info "What to expect"
     - Ingest real time data to an Open Lakehouse
     - Run Data Engineering transformation

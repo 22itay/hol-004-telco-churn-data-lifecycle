@@ -44,7 +44,7 @@ In Data Visualization, click on the **Data Viz** button for the cluster instance
 
 ### Add Field to Data Vizualization Dataset
 
-Edit the previously created Dataset, in **Data** -> **`<Workload Username>`.telco_data_curated**.
+Edit the previously created Dataset, in **Data** -> **`USERNAME`.telco_data_curated**.
 
 ![CDW Data Viz Dashboard CML Field Step 1](cdw_dv_cml_dashboard_step1.png)
 
@@ -67,7 +67,7 @@ In the popup window that appears, enter the name of the new field in **Display N
 Go to the **Expression** tab and enter the following value in the Expression field. This will allow you to call the REST API of the Model you have previously deployed.
 
 ```json
-cviz_rest('{"url":"<url_workspace>","accessKey":"<access_key>","colnames":["monthlycharges","totalcharges","tenure","gender","dependents","onlinesecurity","multiplelines","internetservice","seniorcitizen","techsupport","contract","streamingmovies","deviceprotection","paymentmethod","streamingtv","phoneservice","paperlessbilling","partner","onlinebackup"],"response_colname":"result","config":{"response_key":"response"}}')
+cviz_rest('{"url":"<url_workspace>","accessKey":"<access_key>","colnames":["monthlycharges","totalcharges","tenure","gender","dependents","onlinesecurity","multiplelines","internetservice","seniorcitizen","techsupport","contract","streamingmovies","deviceprotection","paymentmethod","streamingtv","phoneservice","paperlessbilling","partner","onlinebackup"],"response_colname":"result"}')
 ```
 
 ![CDW Data Viz Dashboard CML Field Step 6](cdw_dv_cml_dashboard_step6.png)

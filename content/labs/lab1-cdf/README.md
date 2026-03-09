@@ -47,7 +47,7 @@ From this point, you will need to enter the Flow configuration.
 
 Start by assigning a **Deployment Name**, **Target Project** as outlined below, and click **Next**.
 
-- For **Deployment Name**, please prefix the with your username. For example, `<username>-kafka-to-lakehouse`
+- For **Deployment Name**, please prefix the with your username. For example, `USERNAME-kafka-to-lakehouse`
 - Select `Unassigned` for the **Target Project**. Using a project is a way to organize your flows.
 
 ![Cloudera DataFlow Deploy Flow Step 2](cdf_deploy_flow_step2.png)
@@ -59,7 +59,7 @@ Make sure the option **Automatically start flow upon successful deployment** is 
 In this part of Parameters, you must enter the following values:
 
 - **CDP Workload User Password**: Enter your Workload Password. See the [Cloudera on Cloud Account Guide](../../guides/cdp-account/README.md#setting-your-cdp-workload-password) for details on how to set your Cloudera on Cloud workload password.
-- **CDP Workload Username**: Enter your Workload Username.
+- **CDP Workload Username**: Enter your Workload Username, `USERNAME`.
 - **CDW Hive JDBC url**: `{{ hive_jdbc_url }}`
 - **Kafka Brokers**: `{{ kafka_brokers }}`
 - **Kafka Topic**: `{{ kafka_topic }}`
@@ -116,7 +116,7 @@ To summarize, there are four Processors:
 - _ConsumeKakfaRecord_, consumes data from the Kafka topic, reading the data in JSON and outputting in AVRO.
 - _MergeRecords_, to group the flow files and streamline the data flow.
 - _ConvertAvroToParquet_, conversion needed to store the data in PARQUET format.
-- _PutIceberg_, to insert the data into the table in the Lakehouse. The destination table is called telco_kafka_iceberg, and each user has an assigned database (`<CDP Workload Username>` is the name of the database).
+- _PutIceberg_, to insert the data into the table in the Lakehouse. The destination table is called telco_kafka_iceberg, and each user has an assigned database (`USERNAME` is the name of the database).
 
 As you can see, the Processors are not started, they are paused.
 

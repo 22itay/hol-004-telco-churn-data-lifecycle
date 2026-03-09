@@ -4,7 +4,7 @@ version: 3
 
 images:
   base_image:
-    name: docker-sandbox.infra.cloudera.com/goes/goes-runner-aws:latest
+    name: docker-sandbox.infra.cloudera.com/goes/goes-pvc-community-edition-aws:latest
 
 dependencies:
   system:
@@ -13,8 +13,11 @@ dependencies:
     collections:
       - name: https://github.infra.cloudera.com/GOES/goes.keycloak
         type: git
-        version: master
+        version: main
       - name: https://github.com/cloudera-labs/cloudera.cloud
+        type: git
+        version: main
+      - name: https://github.infra.cloudera.com/GOES/cloudera.runtime
         type: git
         version: devel
       - name: amazon.aws

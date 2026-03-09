@@ -43,7 +43,7 @@ In the Job window, ensure that the `{{ cde_virtual_cluster_name }}` Virtual Clus
 In the Job creation form, enter the following information:
 
 - **Job Type**: Airflow
-- **Name**: Use the naming convention `<username>-pipeline`.
+- **Name**: Use the naming convention `USERNAME-pipeline`.
 - **DAG**: Editor, to graphically configure the task.
 
 Click **Create** once these values are correctly entered.
@@ -63,7 +63,7 @@ Click on the CDE Job button and drag onto the canvas, entering the following set
 - **Title/Name**: `Data Enrichment`
 - **Select Job**: Select `CDE-telco_data_enrichment`
 - Check the checkbox **Override Spark values**. Additional options will appear below.
-- **Arguments**: Enter your Workload Username.
+- **Arguments**: Enter your Workload Username, `USERNAME`.
 
 ![Add Data Enrichment Job](cde_add_enrichment_job.png)
 
@@ -77,7 +77,7 @@ the following settings:
 - **Title/Name**: `Table Update`
 - **Select Job**: Select `CDE-updateTable`
 - Check the checkbox **Override Spark values**. Additional options will appear below.
-- **Arguments**: Enter your Workload Username.
+- **Arguments**: Enter your Workload Username, `USERNAME`.
 
 ![Add Table Update Job](cde_add_table_update_job.png)
 
