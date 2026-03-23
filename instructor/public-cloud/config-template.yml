@@ -15,6 +15,9 @@ region:  "<ENTER_VALUE>"                       # str; e.g. (us-east-2)
 # Used to determine the scaling in the Data Service configuation
 num_attendees: <ENTER_VALUE>
 
+# Optionally specify a pre-existing Keycloak group
+# keycloak_group_name: "<ENTER_VALUE>"
+
 # Cloudera on cloud Environment Deployment
 # NOTE: Uncomment and set below to use existing CDP Public Cloud Environment
 # cdp_env:   "<ENTER_VALUE>" # str; e.g. "cldr1-cdp-env"
@@ -61,8 +64,8 @@ cdp_instructor_group:
     - Owner
 
 cdp_attendee_group:
-  name: "{{ prefix }}-attendee" # NOTE: This can be a pre-existing group aligning with the Keycloak realm
-  create_group: yes # For Terraform
+  name: "{{ keycloak_group_name | default(prefix ~ '-attendee') }}" # NOTE: This can be a pre-existing group aligning with the Keycloak realm
+  create_group: "{{ 'false' if keycloak_group_name is defined else 'true' }}" # For Terraform
   add_to_idbroker: yes
   sync_on_login: no
   roles:
@@ -245,6 +248,6 @@ de:
       maximum_instances: "{{ num_attendees }}"
       vc:
         name: "{{ prefix }}-vc"
-        spark_version: SPARK3_5
+        spark_version: SPARK3_5_4
         cpu_requests: "{{ (instance_types.cde_default[infra_type | lower].cpu * num_attendees * 0.5) | int }}"
         memory_requests: "{{ (instance_types.cde_default[infra_type | lower].mem * num_attendees * 0.5) | int }}Gi"
