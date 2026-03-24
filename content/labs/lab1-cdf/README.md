@@ -32,9 +32,13 @@ Click on the Flow called `{{ kafka_to_lakehouse_flow_name | default("cdp_hol_kaf
 
 ### Configure and Deploy Flow
 
-When the flow is clicked, the panel shown in the image below appears with the Flow information. It shows the available versions, creation date, creator user, and a button **Deploy** to start the deployment. Click on that **Deploy** button.
+When the flow is clicked, the panel shown in the image below appears with the Flow information. It shows the available versions, creation date, creator user, and a button **Deploy** to start the deployment.
 
 ![Cloudera DataFlow Deploy Flow](cdf_deploy_flow.png)
+
+ Click on that **Deploy** button, and select **Create New Deployment**.
+
+![Cloudera DataFlow Deploy Flow](cdf_deploy_flow2.png)
 
 The popup window that appears allows you to select the target Data Flow workspace in which you want to deploy the Flow. In this case, the workspace to be selected is **`{{ cdp_environment_name | default("cloudera-cdp-hol-cdp-env") }}`**. Once selected, click **Continue**.
 
@@ -46,13 +50,15 @@ The popup window that appears allows you to select the target Data Flow workspac
 From this point, you will need to enter the Flow configuration.
 
 Start by assigning a **Deployment Name**, **Target Project** as outlined below, and click **Next**.
-
-- For **Deployment Name**, please prefix the with your username. For example, `USERNAME-kafka-to-lakehouse`
+- For **Deployment Name**, please prefix the with your username.  `USERNAME-kafka-to-lakehouse`
 - Select `Unassigned` for the **Target Project**. Using a project is a way to organize your flows.
+- Flow Name is already pre-filled by default.
+- Option **Automatically start flow upon successful deployment** should be enabled
+
 
 ![Cloudera DataFlow Deploy Flow Step 2](cdf_deploy_flow_step2.png)
 
-Make sure the option **Automatically start flow upon successful deployment** is checked and click **Next**.
+- Once all values are entered, click **Next**.
 
 ![Cloudera DataFlow Deploy Flow Step 3](cdf_deploy_flow_step3.png)
 

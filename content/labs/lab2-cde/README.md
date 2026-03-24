@@ -67,6 +67,8 @@ Click on the CDE Job button and drag onto the canvas, entering the following set
 
 ![Add Data Enrichment Job](cde_add_enrichment_job.png)
 
+- Click **Save** button.
+
 ### Configure Table Update job
 
 Configure the second Job - Table Update.
@@ -80,6 +82,8 @@ the following settings:
 - **Arguments**: Enter your Workload Username, `USERNAME`.
 
 ![Add Table Update Job](cde_add_table_update_job.png)
+
+- Click **Save** button.
 
 ### Configure Job Execution Squenence
 
