@@ -213,7 +213,7 @@ dw:
   overlay: yes
   impala_vw:
     vw_name_prefix: "{{ prefix }}-impala"
-    num_vws: "{{ (num_attendees / 10) | round | int }}"
+    num_vws: "{{ (num_attendees / 10) | round(0, 'ceil') | int }}"
     tshirt_size: small
   hive_vw:
     vw_name_prefix: "{{ prefix }}-hive"
@@ -221,7 +221,7 @@ dw:
     tshirt_size: small
   viz:
     viz_name_prefix: "{{ prefix }}-viz"
-    num_viz: "{{ (num_attendees / 10) | round | int }}"
+    num_viz: "{{ (num_attendees / 10) | round(0, 'ceil') | int }}"
     resource_template: viz-default
 
 viz_default_username: "vizapps_admin"
