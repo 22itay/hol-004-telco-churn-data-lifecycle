@@ -5,6 +5,7 @@ repo_url: https://github.infra.cloudera.com/GOES/hol-004-telco-churn-data-lifecy
 repo_name: goes/hol-004-telco-churn-data-lifecycle
 
 theme:
+    custom_dir: overrides
     name: material
     logo: assets/images/logo-cloudera-white.svg
     favicon: assets/images/favicon.ico
@@ -95,3 +96,8 @@ extra:
     kafka_topic: telco_data
     cai_workbench_name: churn-hol-default-ml
     cde_virtual_cluster_name: churn-hol-vc
+    analytics:
+        provider: custom
+        umami_script_src: https://metrics.cloudera-labs.com/script.js
+        umami_recorder_src: https://metrics.cloudera-labs.com/recorder.js
+        umami_website_id: 621c01ed-d361-4638-81c8-6066ea2ea56b
