@@ -42,6 +42,10 @@ In Data Visualization, click on the **Data Viz** button for the cluster instance
 
 ![CDW Open Data Viz](cdw_open_data_viz.png)
 
+### Add model url to whitelist
+
+Inside DataViz go to settings -> Site Settings -> Advanced Settings .Add your model endpoint to URLs that remote data columns can be fetched from 
+
 ### Add Field to Data Vizualization Dataset
 
 Edit the previously created Dataset, in **Data** -> **`USERNAME`.telco_data_curated**.
