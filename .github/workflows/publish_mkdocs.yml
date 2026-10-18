@@ -9,7 +9,7 @@ permissions:
 jobs:
   deploy:
     if: github.repository == '22itay/hol-004-telco-churn-data-lifecycle'
-    runs-on: goes-runners
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
