@@ -35,6 +35,19 @@ Welcome to this Data Lifecycle Hands on Lab, where you'll explore the full data 
 
 <div class="grid cards"  markdown>
 
+- :simple-cloudera:{ .lg .middle } &nbsp; **Lab 0. Access Cloudera Environment**
+
+    ***
+
+    **Goals**
+
+    - [ ] Use Case Overview
+    - [ ] Connect to Cloudera on cloud control plane
+
+    ***
+
+    [:octicons-arrow-right-24: Go to Lab 0 Guide](labs/lab0-login/README.md)
+
 - :simple-apachenifi:{ .lg .middle } &nbsp; **Lab 1. Cloudera Data Flow**
 
     ***
