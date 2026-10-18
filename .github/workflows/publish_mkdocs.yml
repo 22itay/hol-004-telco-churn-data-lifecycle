@@ -8,7 +8,7 @@ permissions:
   contents: write
 jobs:
   deploy:
-    if: github.repository == 'GOES/hol-004-telco-churn-data-lifecycle'
+    if: github.repository == '22itay/hol-004-telco-churn-data-lifecycle'
     runs-on: goes-runners
     steps:
       - name: Checkout code
