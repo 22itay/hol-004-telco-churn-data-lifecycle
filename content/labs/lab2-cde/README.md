@@ -1,4 +1,4 @@
-# Lab 2 - Cloudera Data Engineering
+# Lab 2 - Cloudera Data Engineering using AI workbench
 
 In this lab you will get an overview of Cloudera Data Engineering by configuring and deploying a Spark job to prepare the data.
 
@@ -15,7 +15,7 @@ None.
 
 ## Tasks
 
-### Open Cloudera Data Engineering
+### Open Cloudera AI
 
 From the Cloudera on cloud Tenant home page, click on Cloudera AI.
 
