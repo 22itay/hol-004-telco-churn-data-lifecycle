@@ -25,4 +25,4 @@ Use the credentials that you selected for your group in this [spreadsheet](https
 
 - [ ] Are you able to connect to the Cloudera Control Plane?
 
-**:rocket: We have now concluded Lab 1 :rocket:**
+**:rocket: We have now concluded Lab 0 :rocket:**
