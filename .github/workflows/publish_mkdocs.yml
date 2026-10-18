@@ -14,10 +14,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy MkDocs to GitHub Pages
-        uses: goes/github-actions/actions/publish-mkdocs-action@main
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          mkdocs_directory: 'instructor/mkdocs/'
-          requirements_file: 'requirements.txt'
-          python_version: 'python3'
-          force_deploy: 'true'
+          python-version: "3.12"
+
+      - name: Version checks
+        run: |
+          python3 --version
+          pip3 --version
+
+      - name: Install Python packages
+        run: sudo pip3 install -r requirements.txt
+        working-directory: instructor/mkdocs/
+
+      - name: Deploy MKDocs to GH Pages
+        run: |
+          mkdocs gh-deploy --force
+        working-directory: instructor/mkdocs/
