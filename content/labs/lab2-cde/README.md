@@ -22,7 +22,6 @@ From the Cloudera on cloud Tenant home page, click on Cloudera AI.
 Enter into our AI Workbench - spr-hol-default-ml
 
 
-### Create Airflow Jobs
 
 !!! info
     For this workshop, two jobs have been created. We will run them in a jupyter notebook
